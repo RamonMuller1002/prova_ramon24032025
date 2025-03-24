@@ -21,7 +21,6 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-
 class Entidade {
     constructor(x, y, largura, altura) {
         this.x = x
@@ -71,6 +70,7 @@ class Cobra extends Entidade {
         comida.x = Math.random() * canvas.width - 10
         comida.y = Math.random() * canvas.height - 10
     }
+
     colisao(){
         if (
             this.x < 0 || 
@@ -83,6 +83,7 @@ class Cobra extends Entidade {
             this.gameOver()
         }    
     }
+
     gameOver() {
         console.log("Game Over");
             this.y = 0;
@@ -95,12 +96,16 @@ class Cobra extends Entidade {
             ctx.fillText("Game Over", (canvas.width / 2) - 150, canvas.height / 2);
 
             ctx.font = "20px Arial";
-            ctx.fillText("f5 para reiniciar", (canvas.width / 2) - 120, (canvas.height / 2) + 30);
+            ctx.fillText("F5 para reiniciar", (canvas.width / 2) - 120, (canvas.height / 2) + 30);
         }
 }
 class Comida extends Entidade {
     constructor() {
         super(Math.random() * canvas.width - 10, Math.random() * canvas.height - 10, 20, 20)
+    }
+    desenhar(cor) {
+        ctx.fillStyle = cor
+        ctx.fillRect(this.x, this.y, this.largura, this.altura)
     }
 }
 
@@ -112,7 +117,7 @@ function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     cobra.desenhar('purple')
     cobra.atualizar()
-    comida.desenhar()
+    comida.desenhar('red')
     cobra.verificarColisao(comida)
     cobra.colisao()
     if(game_over == false){
