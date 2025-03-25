@@ -55,7 +55,7 @@ class Cobra extends Entidade {
        super(x, y, largura, altura);
        this.segmentos = [{x: x, y: y}];
        this.tamanhoSegmento = largura;
-       this.velocidade = 7;
+       this.velocidade = 4;
        this.direcao = 'direita';
        this.novaDirecao = 'direita';
    }
